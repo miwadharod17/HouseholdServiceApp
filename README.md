@@ -58,29 +58,6 @@ A full-stack web application that connects **customers** with **service professi
 
 ---
 
-## System Architecture
-
-```
-                 +----------------+
-                 |     Admin      |
-                 +----------------+
-                    /    |     \
-                   /     |      \
-          Services   Professionals  Requests
-                 \      |      /
-                  \     |     /
-               +------------------+
-               |     Database     |
-               +------------------+
-                 /             \
-                /               \
-      +----------------+   +----------------------+
-      |   Customers    |   | Service Professionals|
-      +----------------+   +----------------------+
-```
-
----
-
 ## Database Schema
 
 ### Admin
