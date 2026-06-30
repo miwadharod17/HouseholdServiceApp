@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    
+</head>
+<body>
+    <div style="text-align:center">
+        <a href="{{ url_for('admin_login') }}">ADMIN</a>
+            <a href="{{ url_for('customer_login') }}">CUSTOMER</a>
+            <a href="{{ url_for('professional_login') }}">SERVICE PROFESSIONAL</a>
+    </div>
+    <div style="text-align:center">
+        <h1>WELCOME ADMIN</h1>
+        <div style="text-align:center">
+            <form action="{{ url_for('admin_login')}}" method="POST">
+                <input type="text" name="name" placeholder="Login ID" required><br><br>
+                <input type="text" name="password" placeholder="Password" required><br><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

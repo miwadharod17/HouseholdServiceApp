@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professional Summary</title>
+</head>
+<body>
+    <div style="text-align:center">
+        <a href="{{ url_for('professional_dashboard',professional_id=professional_id) }}">HOME</a>
+        <a href="{{ url_for('professional_search', professional_id=professional_id) }}">SEARCH</a>
+        <a href="{{ url_for('professional_summary', professional_id=professional_id) }}">SUMMARY</a>
+        <a href="{{ url_for('professional_profile', professional_id=professional_id)}}">PROFILE</a>
+        <a href="{{ url_for('professional_login') }}">LOGOUT</a>
+    </div>
+    <h1>Professional Summary</h1>
+
+    {% if message %}
+    <p>{{ message }}</p>
+    {% else %}
+    <h2>Total Service Requests: {{ total_requests }}</h2>
+    <ul>
+        <li>Closed Requests: {{ closed_requests }}</li>
+        <li>Accepted Requests: {{ assigned_requests }}</li>
+
+    </ul>
+
+    <div class="chart-container">
+        <h3>Service Requests Summary</h3>
+        <img src="{{ histogram_path }}" alt="Service Requests Histogram">
+    </div>
+
+    {% if ratings_chart_path %}
+    <div class="chart-container">
+        <h3>Ratings Distribution</h3>
+        <img src="{{ ratings_chart_path }}" alt="Ratings Histogram">
+    </div>
+    {% else %}
+    <p>No ratings data available for this professional.</p>
+    {% endif %}
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rate Your Service</title>
+</head>
+<body>
+    <h1>Rate Your Service</h1>
+    <form method="POST" action="{{ url_for('close_request', request_id=request_id) }}">
+        <div class="form-group">
+            <label for="professional_id">Professional ID:</label>
+            <input type="text" id="professional_id" name="professional_id" value="{{ professional_id }}" readonly>
+        </div>
+            <label for="rating">Rate the Service (1 to 5):</label>
+            <select id="rating" name="rating" required>
+                <option value="" disabled selected>Select Rating</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <a class="back-link" href="{{ url_for('customer_dashboard', customer_id=customer_id) }}">Go Back</a>
+</body>
+</html>

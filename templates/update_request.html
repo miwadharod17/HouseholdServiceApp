@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update Request</title>
+    </head>
+    <body>
+        <h1>Update Request</h1>
+        <form action="{{ url_for('update_request', request_id=request.request_id) }}" method="POST">
+            <div>
+                <label>Request ID:</label>
+                <input type="text" value="{{ request.service_id }}" disabled />
+            </div>
+            <div>
+                <label>Date of Request:</label>
+                <input type="text" name="request_date" value="{{ request.request_date }}" required />
+            </div>
+            <div>
+                <input type="submit" value="Update Request">
+            </div>
+        </form>
+        <a href="{{ url_for('customer_dashboard', customer_id=customer_id) }}">Cancel</a>
+    </body>
+</html>

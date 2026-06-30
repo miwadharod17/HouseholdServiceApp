@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Select Booking Date</title>
+    </head>
+    <body>
+        <h1>Select the Date for the Service</h1>
+
+        <form method="POST">
+            <label for="request_date">Select Service Date:</label>
+            <input type="text" id="request_date" name="request_date" required>
+            <button type="submit">Confirm Booking</button>
+        </form>
+
+        <br>
+        <a href="{{ url_for('customer_dashboard', customer_id=customer_id) }}">Cancel</a>
+    </body>
+</html>

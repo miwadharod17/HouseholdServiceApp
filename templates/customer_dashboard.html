@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Customer Dashboard</title>
+    </head>
+    <body>
+        <div style="text-align:center">
+            <a href="{{ url_for('customer_dashboard', customer_id=customer_id) }}">HOME</a>
+            <a href="{{ url_for('customer_search', customer_id=customer_id) }}">SEARCH</a>
+            <a href="{{ url_for('customer_summary', customer_id=customer_id) }}">SUMMARY</a>
+            <a href="{{ url_for('customer_profile', customer_id=customer_id)}}">PROFILE</a>
+            <a href="{{ url_for('customer_logout') }}">LOGOUT</a>
+        </div>
+        <h1>Your Service Requests</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Service Name</th>
+                    <th>Service Description</th>
+                    <th>Professional ID</th>
+                    <th>Status</th>
+                    <th>Date of Request</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in service_requests %}
+                <tr>
+                    <td>{{ request.service_name }}</td>
+                    <td>{{ request.description }}</td>
+                    <td>{{ request.professional_id if request.professional_id else 'None' }}</td>
+                    <td>{{ request.status }}</td>
+                    <td>{{ request.request_date }}</td>
+                    <td>
+                        <a href="{{ url_for('update_request', request_id=request.request_id )}}">Edit</a>
+                        {% if request.status == 'accepted' %}
+                        <a href="{{ url_for('close_request', request_id=request.request_id) }}">Close Request</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

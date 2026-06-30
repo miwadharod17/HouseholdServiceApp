@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Summary</title>
+</head>
+<body>
+    <div style="text-align:center">
+        <a href="{{ url_for('admin_dashboard') }}">HOME</a>
+        <a href="{{ url_for('admin_search') }}">SEARCH</a>
+        <a href="{{ url_for('admin_summary') }}">SUMMARY</a>
+        <a href="{{ url_for('admin_logout') }}">LOGOUT</a>
+    </div>
+    <h1>Admin Summary</h1>
+
+    <h2>Total Service Requests: {{ total_requests }}</h2>
+
+    {% if status_chart_path %}
+    <div class="chart-container">
+        <h3>Service Request Status Overview</h3>
+        <img src="{{ status_chart_path }}" alt="Service Request Status Chart">
+    </div>
+    {% else %}
+    <p>No service request data available.</p>
+    {% endif %}
+
+    {% if ratings_chart_path %}
+    <div class="chart-container">
+        <h3>Ratings Distribution</h3>
+        <img src="{{ ratings_chart_path }}" alt="Ratings Histogram">
+    </div>
+    {% else %}
+    <p>No ratings data available.</p>
+    {% endif %}
+</body>
+</html>

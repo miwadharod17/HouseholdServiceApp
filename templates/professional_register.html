@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Professional Registration</title>
+    </head>
+    <body>
+        <h2>Professional Registration</h2>
+        <form action="{{ url_for('professional_register') }}" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" required><br><br>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" name="phone" required><br><br>
+
+            <label for="service_name">Service Name:</label>
+            <input type="text" name="service_name" required><br><br>
+
+            <label for="experience">Experience:</label>
+            <input type="text" name="experience" required><br><br>
+
+            <label for="detail">Professional Details</label>
+            <input type="file" name="file"><br><br>
+
+            <label for="password">Password:</label>
+            <input type="text" name="password" required><br><br>
+
+            <button type="submit">Register</button>
+        </form>
+    </body>
+</html>

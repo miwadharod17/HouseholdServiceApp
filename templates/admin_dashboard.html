@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <div style="text-align:center">
+        <a href="{{ url_for('admin_dashboard') }}">HOME</a>
+        <a href="{{ url_for('admin_search') }}">SEARCH</a>
+        <a href="{{ url_for('admin_summary') }}">SUMMARY</a>
+        <a href="{{ url_for('admin_login') }}">LOGOUT</a>
+    </div>
+    <div style="text-align:center">
+        <h1>ADMIN DASHBOARD</h1>
+        
+        <h1>Services</h1>
+        <table border="1" style="margin:auto;">
+            <thead>
+                <tr>
+                    <th>Service ID</th>
+                    <th>Service Name</th>
+                    <th>Service Description</th>
+                    <th>Base Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in services %}
+                    <tr>
+                        <td><a href="{{ url_for('service_details', service_id=service.service_id) }}">{{ service.service_id }}</a></td>
+                        <td>{{ service.service_name }}</td>
+                        <td>{{ service.description }}</td>
+                        <td>{{ service.base_price }}</td>
+                        <td>
+                            <a href="{{ url_for('update_service', service_id=service.service_id) }}">Update</a>
+                            <a href="{{ url_for('delete_service', service_id=service.service_id) }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align:right;">
+                        <a href="{{ url_for('add_service') }}">+ Add Service</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <h1>Service Professionals</h1>
+        <table border="1" style="margin:auto;">
+            <thead>
+                <tr>
+                    <th>Service Professional ID</th>
+                    <th>Service Professional Name</th>
+                    <th>Service Name</th>
+                    <th>Experience</th>
+                    <th>Approval Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for professional in professionals %}
+                    <tr>
+                        <td><a href="{{ url_for('professional_details', professional_id=professional.professional_id) }}">{{ professional.professional_id }}</a></td>
+                        <td>{{ professional.professional_name }}</td>
+                        <td>{{ professional.service_name }}</td>
+                        <td>{{ professional.experience }}</td>
+                        <td>{{ professional.approval }}</td>
+                        <td>
+                            <a href="{{ url_for('approve_professional', professional_id=professional.professional_id) }}">Approve</a>
+                            <a href="{{ url_for('reject_professional', professional_id=professional.professional_id) }}">Reject</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h1>Service Requests</h1>
+        <table border="1" style="margin:auto;">
+            <thead>
+                <tr>
+                    <th>Service Request ID</th>
+                    <th>Service Professional Name</th>
+                    <th>Service Name</th>
+                    <th>Service Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in requests %}
+                    <tr>
+                        <td>{{ request.request_id }}</td>
+                        <td>{{ request.professional_name }}</td>
+                        <td>{{ request.service_name }}</td>
+                        <td>{{ request.description }}</td>
+                        <td>{{ request.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

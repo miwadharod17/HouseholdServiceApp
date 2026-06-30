@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Summary</title>
+</head>
+<body>
+    <div style="text-align:center">
+        <a href="{{ url_for('customer_dashboard', customer_id=customer_id) }}">HOME</a>
+        <a href="{{ url_for('customer_search', customer_id=customer_id) }}">SEARCH</a>
+        <a href="{{ url_for('customer_summary', customer_id=customer_id) }}">SUMMARY</a>
+        <a href="{{ url_for('customer_profile', customer_id=customer_id)}}">PROFILE</a>
+        <a href="{{ url_for('customer_logout') }}">LOGOUT</a>
+    </div>
+    <h1>Service Requests Summary</h1>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+        <p>Total Requests: {{ total_requests }}</p>
+        <p>Closed Requests: {{ closed_requests }}</p>
+        <p>Accepted Requests: {{ assigned_requests }}</p>
+        <p>Requested Requests: {{ requested_requests }}</p>
+
+        <img src="{{ histogram_path }}" alt="Service Requests Histogram">
+    {% endif %}
+</body>
+</html>

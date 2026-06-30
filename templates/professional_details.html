@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Professional Details</title>
+    </head>
+    <body>
+        <h1 style="text-align: center">Professional Details</h1>
+        <table border="1">
+            <tr>
+                <th>Professional ID</th>
+                <td>{{ service_professional.professional_id }}</td>
+            </tr>
+            <tr>
+                <th>Professional Name</th>
+                <td>{{ service_professional.professional_name }}</td>
+            </tr>
+            <tr>
+                <th>Service Name</th>
+                <td>{{ service_professional.service_name }}</td>
+            </tr>
+            <tr>
+                <th>Experience (years)</th>
+                <td>{{ service_professional.experience }}</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td>{{ service_professional.professional_phone }}</td>
+            </tr>
+            <tr>
+                <th>Approved Status</th>
+                <td>{{ service_professional.approval }}</td>
+            </tr>
+        </table>
+        <h2>Closed Service Requests for this Professional</h2>
+        <table border="1">
+            <tr>
+                <th>S. No.</th>
+                <th>Request ID</th>
+                <th>Customer Name</th>
+                <th>Service Name</th>
+                <th>Service Description</th>
+                <th>Base Price</th>
+                <th>Status of Service</th>
+                <th>Rating</th>
+            </tr>
+            {% for request in service_requests %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ request.request_id }}</td>
+                <td>{{ request.customer_name }}</td>
+                <td>{{ request.service_name }}</td>
+                <td>{{ request.description }}</td>
+                <td>{{ request.base_price }}</td>
+                <td>{{ request.status }}</td>
+                <td>{{ request.rating }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('admin_dashboard') }}">Go Back</a>
+    </body>
+</html>

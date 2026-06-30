@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search Services</title>
+    </head>
+    <body>
+        <div style="text-align:center">
+            <a href="{{ url_for('customer_dashboard', customer_id=customer_id) }}">HOME</a>
+            <a href="{{ url_for('customer_search', customer_id=customer_id) }}">SEARCH</a>
+            <a href="{{ url_for('customer_summary', customer_id=customer_id) }}">SUMMARY</a>
+            <a href="{{ url_for('customer_profile', customer_id=customer_id)}}">PROFILE</a>
+            <a href="{{ url_for('customer_logout') }}">LOGOUT</a>
+        </div>
+        <h1>Search Services</h1>
+        <form method="POST">
+            <label for="service_name">Select Service Name:</label>
+            <select id="service_name" name="service_name">
+                {% for service_name in service_names %}
+                <option value="{{ service_name }}">{{ service_name }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" name="base_price" placeholder="Enter base price" required>
+        <button type="submit">Search</button>
+        </form>
+
+        {% if services %}
+        <h2>Available Services</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Service Name</th>
+                    <th>Service Description</th>
+                    <th>Base Price</th>
+                    <th>Time Required</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in services %}
+                <tr>
+                    <td>{{ service.service_name }}</td>
+                    <td>{{ service.description }}</td>
+                    <td>{{ service.base_price }}</td>
+                    <td>{{ service.time_required }}</td>
+                    <td>
+                        <form method="GET" action="{{ url_for('select_booking_date', service_id=service.service_id) }}">
+                            <button type="submit">Book</button>
+                        </form>                        
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </body>
+</html>

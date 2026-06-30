@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Service Details</title>
+    </head>
+    <body>
+        <h1 style="text-align: center">Service Details</h1>
+        <table border="1">
+            <tr>
+                <th>Service ID</th>
+                <td>{{ service.service_id }}</td>
+            </tr>
+            <tr>
+                <th>Service Name</th>
+                <td>{{ service.service_name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ service.description }}</td>
+            </tr>
+            <tr>
+                <th>Time Required (hours)</th>
+                <td>{{ service.time_required }}</td>
+            </tr>
+            <tr>
+                <th>Base Price</th>
+                <td>{{ service.base_price }}</td>
+            </tr>
+        </table>
+        <a href="{{ url_for('admin_dashboard') }}">Go Back</a>
+    </body>
+</html>

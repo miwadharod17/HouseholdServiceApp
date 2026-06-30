@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Dashboard - Search</title>
+    </head>
+    <body>
+        <div style="text-align:center">
+            <a href="{{ url_for('admin_dashboard') }}">HOME</a>
+            <a href="{{ url_for('admin_search') }}">SEARCH</a>
+            <a href="{{ url_for('admin_summary') }}">SUMMARY</a>
+            <a href="{{ url_for('admin_logout') }}">LOGOUT</a>
+        </div>
+
+        <div style="text-align:center">
+            <h1>ADMIN SEARCH</h1>
+            <form method="POST" action="{{ url_for('admin_search') }}">
+                <label>Search by:</label>
+                <select id="search-category" name="category">
+                    <option value="service" {% if category == 'service' %}selected{% endif %}>Service</option>
+                    <option value="customer" {% if category == 'customer' %}selected{% endif %}>Customer</option>
+                    <option value="professional" {% if category == 'professional' %}selected{% endif %}>Professional</option>
+                </select>
+                <input type="text" name="search_term" placeholder="Enter search term" value="{{ search_term }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <div>
+            {% if category == 'service' %}
+                <h2>Service Requests</h2>
+                <table border="1" style="margin: auto;">
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Customer ID</th>
+                            <th>Service ID</th>
+                            <th>Professional ID</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for request in results %}
+                            <tr>
+                                <td>{{ request.request_id }}</td>
+                                <td>{{ request.customer_id }}</td>
+                                <td>{{ request.service_id }}</td>
+                                <td>{{ request.professional_id }}</td>
+                                <td>{{ request.status }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% elif category == 'customer' %}
+                <h2>Customers</h2>
+                <table border="1" style="margin: auto;">
+                    <thead>
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in results %}
+                            <tr>
+                                <td>{{ customer.customer_id }}</td>
+                                <td>{{ customer.customer_name }}</td>
+                                <td>{{ customer.customer_phone }}</td>
+                                <td>{{ customer.location }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% elif category == 'professional' %}
+                <h2>Professionals</h2>
+                <table border="1" style="margin: auto;">
+                    <thead>
+                        <tr>
+                            <th>Professional ID</th>
+                            <th>Name</th>
+                            <th>Service Name</th>
+                            <th>Experience</th>
+                            <th>Phone</th>
+                            <th>Approval Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for professional in results %}
+                            <tr>
+                                <td>{{ professional.professional_id }}</td>
+                                <td>{{ professional.professional_name }}</td>
+                                <td>{{ professional.service_name }}</td>
+                                <td>{{ professional.experience }}</td>
+                                <td>{{ professional.professional_phone }}</td>
+                                <td>{{ professional.approval }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No results found. Please select a category and enter a search term.</p>
+            {% endif %}
+        </div>
+    </body>
+</html>

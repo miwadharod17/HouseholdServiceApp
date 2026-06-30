@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Customer Registration</title>
+    </head>
+    <body>
+        <h2>Customer Registration</h2>
+        <form action="{{ url_for('customer_register') }}" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="customer_name" required><br><br>
+            
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="customer_phone" required><br><br>
+            
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location"><br><br>
+
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" required><br><br>
+            
+            <button type="submit">Register</button>
+        </form>
+    </body>
+</html>

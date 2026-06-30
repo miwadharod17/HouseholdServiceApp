@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professional Search</title>
+</head>
+<body>
+    <div style="text-align:center">
+        <a href="{{ url_for('professional_dashboard',professional_id=professional_id) }}">HOME</a>
+        <a href="{{ url_for('professional_search', professional_id=professional_id) }}">SEARCH</a>
+        <a href="{{ url_for('professional_summary', professional_id=professional_id) }}">SUMMARY</a>
+        <a href="{{ url_for('professional_profile', professional_id=professional_id)}}">PROFILE</a>
+        <a href="{{ url_for('professional_login') }}">LOGOUT</a>
+    </div>
+    <form method="POST">
+        <label>Search by:</label>
+        <select name="category" id="search-category">
+            <option value="location">Location</option>
+        </select>
+        <input type="text" name="search_term" placeholder="Enter search term" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <div>
+        {% if category == 'location' %}
+        <h2>Customers</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Service Description</th>
+                    <th>Customer ID</th>
+                    <th>Customer Name</th>
+                    <th>Customer Phone</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in results %}
+                <tr>
+                    <td>{{ customer.description }}</td>
+                    <td>{{ customer.customer_id }}</td>
+                    <td>{{ customer.customer_name }}</td>
+                    <td>{{ customer.customer_phone }}</td>
+                    <td>{{ customer.location }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Please select a category and enter a search term.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service Professional Profile</title>
+</head>
+<body>
+    <div style="text-align:center">
+        <a href="{{ url_for('professional_dashboard',professional_id=professional_id) }}">HOME</a>
+        <a href="{{ url_for('professional_search', professional_id=professional_id) }}">SEARCH</a>
+        <a href="{{ url_for('professional_summary', professional_id=professional_id) }}">SUMMARY</a>
+        <a href="{{ url_for('professional_profile', professional_id=professional_id)}}">PROFILE</a>
+        <a href="{{ url_for('professional_login') }}">LOGOUT</a>
+    </div>
+    <h1>Service Professional Profile</h1>
+    <div>
+        <p><strong>Professional ID:</strong> {{ professional.professional_id }}</p>
+        <p><strong>Name:</strong> {{ professional.professional_name }}</p>
+        <p><strong>Service Name:</strong> {{ professional.service_name }}</p>
+        <p><strong>Experience:</strong> {{ professional.experience }} years</p>
+        <p><strong>Phone:</strong> {{ professional.professional_phone }}</p>
+        <p><strong>Approval Status:</strong> 
+            {% if professional.approval == 1 %}
+                Approved
+            {% else %}
+                Not Approved
+            {% endif %}
+        </p>
+    </div>
+</body>
+</html>
