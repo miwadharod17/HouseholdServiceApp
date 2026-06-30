@@ -154,7 +154,7 @@ Household-Services/
 ### Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/household-services.git
+git clone https://github.com/miwadharod17/household-services.git
 cd household-services
 ```
 
